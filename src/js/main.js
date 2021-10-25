@@ -8,10 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   toggle.addEventListener('change', (event) => {
     if (event.target.checked) {
       body.className = 'dark-theme';
-      updateThemeColor();
     } else {
       body.className = 'light-theme';
-      updateThemeColor();
     }
+    updateThemeColor();
   });
 });
