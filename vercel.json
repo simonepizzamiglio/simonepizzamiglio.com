@@ -1,4 +1,3 @@
 {
-  "framework": "react-router",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "framework": "react-router"
 }
