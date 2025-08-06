@@ -40,7 +40,7 @@ MCP allows AI models to pull information, update records, send messages, run com
 **Subagents** operate within hierarchical agent systems, where a primary agent delegates specialized tasks to subordinate agents. This architecture enables:
 
 - **Specialization**: Each subagent focuses on specific domains or functions
-- **Scalability**: Complex workflows can be distributed across multiple specialized components  
+- **Scalability**: Complex workflows can be distributed across multiple specialized components
 - **Modularity**: Individual subagents can be updated or replaced without affecting the entire system
 
 Example subagent roles in development workflows:
@@ -99,7 +99,7 @@ Subagents provide specialized capabilities in development workflows, here are a 
 The engineering role is shifting toward:
 
 - Problem definition and requirements analysis
-- Solution validation and architecture guidance  
+- Solution validation and architecture guidance
 - Tool orchestration and system integration
 - Quality assurance and performance optimization
 

@@ -46,9 +46,9 @@ const Navigation = () => {
           <div className="md:hidden">
             <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <PopoverTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
+                <Button
+                  variant="ghost"
+                  size="sm"
                   className="flex items-center space-x-1"
                   aria-expanded={isMenuOpen}
                   aria-controls="mobile-menu"

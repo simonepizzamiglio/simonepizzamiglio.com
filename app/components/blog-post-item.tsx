@@ -23,7 +23,12 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post, variant = 'default' }
           <h2 className="mb-4 text-xl font-semibold text-foreground transition-colors group-hover:text-primary">
             {post.title}
           </h2>
-          <time className="mb-2 flex text-xs text-muted-foreground" dateTime={post.date.toISOString()}>{formattedDate}</time>
+          <time
+            className="mb-2 flex text-xs text-muted-foreground"
+            dateTime={post.date.toISOString()}
+          >
+            {formattedDate}
+          </time>
           <p className="mb-4 leading-relaxed text-muted-foreground">{post.description}</p>
           <ReadArticleButton />
         </article>
@@ -35,7 +40,12 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post, variant = 'default' }
     <article className="grid grid-cols-1 items-start gap-8 md:grid-cols-4">
       {/* Date column */}
       <div className="mt-6 hidden md:col-span-1 md:block">
-        <time className="text-sm leading-relaxed text-muted-foreground" dateTime={post.date.toISOString()}>{formattedDate}</time>
+        <time
+          className="text-sm leading-relaxed text-muted-foreground"
+          dateTime={post.date.toISOString()}
+        >
+          {formattedDate}
+        </time>
       </div>
 
       {/* Content column */}
@@ -43,7 +53,12 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post, variant = 'default' }
         <div className="absolute -inset-x-0 -inset-y-0 z-0 scale-95 bg-secondary opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-0 sm:rounded-2xl"></div>
         <Link to={`/blog/${post.slug}`} className="relative z-10">
           <h2 className="mb-4 text-2xl font-semibold text-foreground">{post.title}</h2>
-          <time className="mb-2 flex text-xs text-muted-foreground md:hidden" dateTime={post.date.toISOString()}>{formattedDate}</time>
+          <time
+            className="mb-2 flex text-xs text-muted-foreground md:hidden"
+            dateTime={post.date.toISOString()}
+          >
+            {formattedDate}
+          </time>
           <p className="pb-6 leading-relaxed text-muted-foreground">{post.description}</p>
           <ReadArticleButton />
         </Link>
@@ -57,7 +72,11 @@ function ReadArticleButton() {
     <Button asChild variant="link" className="h-auto gap-0 p-0 has-[>svg]:px-0">
       <span className="inline-flex items-center">
         Read article
-        <ChevronRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+        <ChevronRight
+          size={16}
+          className="ml-1 transition-transform group-hover:translate-x-1"
+          aria-hidden="true"
+        />
       </span>
     </Button>
   );

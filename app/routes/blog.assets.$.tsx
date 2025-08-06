@@ -36,7 +36,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
         break;
     }
 
-    return new Response(file, {
+    return new Response(file as unknown as BodyInit, {
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'public, max-age=31536000, immutable',

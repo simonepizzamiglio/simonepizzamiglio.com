@@ -10,7 +10,7 @@ import tailwind from 'eslint-plugin-tailwindcss';
 
 export default defineConfig([
   {
-    ignores: ['.react-router/**'],
+    ignores: ['.react-router/**', 'build/**', 'dist/**', 'node_modules/**'],
   },
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
