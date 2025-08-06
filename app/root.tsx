@@ -10,6 +10,7 @@ import {
 import type { Route } from './+types/root';
 import './app.css';
 import Navigation from './components/navigation';
+import { PHProvider } from './components/providers/posthog-provider';
 
 export const meta: Route.MetaFunction = () => [
   { title: 'Simone Pizzamiglio' },
@@ -48,10 +49,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Navigation />
-        <main className="mx-auto max-w-3xl px-6 py-24">{children}</main>
-        <ScrollRestoration />
-        <Scripts />
+        <PHProvider>
+          <Navigation />
+          <main className="mx-auto max-w-3xl px-6 py-24">{children}</main>
+          <ScrollRestoration />
+          <Scripts />
+        </PHProvider>
       </body>
     </html>
   );
