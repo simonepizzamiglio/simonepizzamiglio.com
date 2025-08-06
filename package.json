@@ -52,6 +52,7 @@
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "@vercel/react-router": "^1.2.2",
     "@vitest/ui": "^3.2.4",
     "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.8",
