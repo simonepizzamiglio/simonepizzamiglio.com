@@ -5,12 +5,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteLoaderData,
 } from 'react-router';
 
 import type { Route } from './+types/root';
 import './app.css';
 import Navigation from './components/navigation';
-import { PHProvider } from './components/providers/posthog-provider';
+import { PostHogProvider } from './components/providers/posthog-provider';
 
 export const meta: Route.MetaFunction = () => [
   { title: 'Simone Pizzamiglio' },
@@ -39,7 +40,16 @@ export const links: Route.LinksFunction = () => [
   { rel: 'manifest', href: '/site.webmanifest' },
 ];
 
+export async function loader() {
+  return {
+    posthogKey: process.env.POSTHOG_KEY,
+  };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const loaderData = useRouteLoaderData<Route.ComponentProps['loaderData']>('root');
+  const posthogKey = loaderData?.posthogKey;
+
   return (
     <html lang="en" className="dark">
       <head>
@@ -49,12 +59,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <PHProvider>
+        <PostHogProvider posthogKey={posthogKey}>
           <Navigation />
           <main className="mx-auto max-w-3xl px-6 py-24">{children}</main>
           <ScrollRestoration />
           <Scripts />
-        </PHProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
