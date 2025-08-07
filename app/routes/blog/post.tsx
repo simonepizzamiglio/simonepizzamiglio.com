@@ -28,8 +28,7 @@ const BlogPost = ({ loaderData }: Route.ComponentProps) => {
       <title>{post.meta.title}</title>
       <meta property="og:title" content={post.meta.title} />
       <meta name="description" content={post.meta.description} />
-      {/* The rest of your route content... */}
-      <article className="prose prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-ul:text-muted-foreground prose-li:text-muted-foreground max-w-none break-words">
+      <article className="prose dark:prose-invert">
         <time className="text-primary text-sm" dateTime={post.meta.date.toISOString()}>
           {post.meta.date.toLocaleDateString()}
         </time>
