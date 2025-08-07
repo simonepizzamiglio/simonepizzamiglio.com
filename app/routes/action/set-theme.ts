@@ -1,11 +1,7 @@
 import { parseWithZod } from '@conform-to/zod/v4';
-import { type ActionFunctionArgs, data, redirect } from 'react-router';
+import { type ActionFunctionArgs, data } from 'react-router';
 import { setTheme } from '~/lib/theme.server';
 import { ThemeFormSchema } from '~/lib/theme';
-
-export async function loader() {
-  return redirect('/');
-}
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
