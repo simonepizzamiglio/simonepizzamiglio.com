@@ -1,3 +1,13 @@
-node_modules
-dist
-.cache
+.DS_Store
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+/dist/
+
+# Vercel
+.vercel/
+
+# Environment variables
+.env
