@@ -218,29 +218,34 @@ const About = ({ loaderData }: Route.ComponentProps) => {
         </div>
       </section>
 
-      {/* Work Experience Timeline */}
       <section>
         <h2 className="mb-8 text-3xl font-bold">Work Experience</h2>
         <div className="relative">
           {/* Timeline line */}
-          <div className="bg-primary absolute bottom-0 left-[0.5px] top-2 w-px"></div>
+          <div className="bg-primary absolute bottom-0 left-[0.5px] top-2 w-px" />
 
           {workExperience.map((company, companyIndex) => (
             <div key={companyIndex} className="relative pb-12 pl-8 last:pb-0">
               {/* Timeline dot */}
-              <div className="border-background bg-primary absolute left-0 top-2 h-4 w-4 -translate-x-1/2 transform rounded-full border-4"></div>
+              <div className="border-background bg-primary absolute left-0 top-2 h-4 w-4 -translate-x-1/2 transform rounded-full border-4" />
 
               <div className="grid gap-6 md:grid-cols-3">
-                {/* Left side - Company info */}
                 <div className="md:col-span-1">
                   <div className="text-muted-foreground mb-1 text-sm">
                     {company.startDate} - {company.endDate || 'Present'}
                   </div>
-                  <div className="text-foreground mb-1 font-semibold">{company.company}</div>
+                  <div className="text-foreground mb-1 font-semibold">
+                    {company.companyUrl ? (
+                      <Link to={company.companyUrl} className="underline" target="_blank">
+                        {company.company}
+                      </Link>
+                    ) : (
+                      company.company
+                    )}
+                  </div>
                   <div className="text-muted-foreground mb-1 text-sm">{company.location}</div>
                 </div>
 
-                {/* Right side - Roles */}
                 <div className="space-y-6 md:col-span-2">
                   {company.roles.map((role, roleIndex) => {
                     const startDate = role.startDate || company.startDate;
