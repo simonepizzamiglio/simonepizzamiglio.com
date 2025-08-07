@@ -43,11 +43,11 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Navigation Menu */}
-          <div className="md:hidden">
+          <div className="flex items-center justify-end gap-2 md:hidden">
             <Popover open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <PopoverTrigger asChild>
                 <Button
-                  variant="ghost"
+                  variant="secondary"
                   size="sm"
                   className="flex items-center space-x-1"
                   aria-expanded={isMenuOpen}
@@ -83,6 +83,9 @@ const Navigation = () => {
                 </div>
               </PopoverContent>
             </Popover>
+            <div>
+              <ThemeToggle />
+            </div>
           </div>
 
           <div className="flex items-center space-x-5">
@@ -120,7 +123,9 @@ const Navigation = () => {
             >
               <Mail size={20} aria-hidden="true" />
             </a>
-            <ThemeToggle />
+            <div className="hidden md:block">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>
