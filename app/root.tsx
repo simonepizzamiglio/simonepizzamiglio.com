@@ -9,7 +9,8 @@ import {
 } from 'react-router';
 
 import type { Route } from './+types/root';
-import './app.css';
+import './styles/SpaceGrotesk.css';
+import './styles/app.css';
 import Navigation from './components/navigation';
 import { PostHogProvider } from './components/providers/posthog-provider';
 import { ClientHintCheck, getHints } from './lib/client-hints';
