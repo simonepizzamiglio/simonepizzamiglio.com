@@ -19,18 +19,13 @@ export const THEME_FETCHER_KEY = 'THEME_FETCHER';
 export function useTheme() {
   const hints = useHints();
   const requestInfo = useRequestInfo();
+  console.log('🚀 ~ useTheme:', { requestInfo, hints });
   const optimisticMode = useOptimisticThemeMode();
   if (optimisticMode) {
     return optimisticMode === 'system' ? hints.theme : optimisticMode;
   }
 
-  // Prioritize user's explicit theme preference (from cookie) over client hints
-  // This prevents hydration mismatches on prerendered pages
-  if (requestInfo.userPrefs.theme) {
-    return requestInfo.userPrefs.theme;
-  }
-
-  return hints.theme;
+  return requestInfo.userPrefs.theme ?? hints.theme;
 }
 
 /**
@@ -44,7 +39,10 @@ export function useOptimisticThemeMode() {
     const submission = parseWithZod(themeFetcher.formData, {
       schema: ThemeFormSchema,
     });
-    if (submission.status === 'success') return submission.value.theme;
+    if (submission.status === 'success') {
+      console.log('🚀 ~ useOptimisticThemeMode:', { theme: submission.value.theme });
+      return submission.value.theme;
+    }
     return null;
   }
 }
