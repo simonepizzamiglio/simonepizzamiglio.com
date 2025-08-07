@@ -12,6 +12,10 @@ import type { Route } from './+types/root';
 import './app.css';
 import Navigation from './components/navigation';
 import { PostHogProvider } from './components/providers/posthog-provider';
+import { ClientHintCheck, getHints } from './lib/client-hints';
+import { getTheme } from './lib/theme.server';
+import { useTheme } from './lib/theme';
+import { useNonce } from './components/providers/nonce-provider';
 
 export const meta: Route.MetaFunction = () => [
   { title: 'Simone Pizzamiglio' },
@@ -40,19 +44,30 @@ export const links: Route.LinksFunction = () => [
   { rel: 'manifest', href: '/site.webmanifest' },
 ];
 
-export async function loader() {
+export async function loader({ request }: Route.LoaderArgs) {
+  const requestInfo = {
+    hints: getHints(request),
+    userPrefs: {
+      theme: getTheme(request),
+    },
+  };
+
   return {
     posthogKey: process.env.POSTHOG_KEY,
+    requestInfo,
   };
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const loaderData = useRouteLoaderData<Route.ComponentProps['loaderData']>('root');
   const posthogKey = loaderData?.posthogKey;
+  const theme = useTheme();
+  const nonce = useNonce();
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={theme}>
       <head>
+        <ClientHintCheck nonce={nonce} />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />

@@ -3,6 +3,7 @@ import { Github, Linkedin, Twitter, Mail, ChevronDown } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover';
 import { Button } from '~/components/ui/button';
 import { useState } from 'react';
+import ThemeToggle from '~/components/theme-toggle';
 
 const Navigation = () => {
   const location = useLocation();
@@ -25,7 +26,6 @@ const Navigation = () => {
     <nav className="fixed top-0 right-0 left-0 z-50 bg-background/80 backdrop-blur-sm">
       <div className="mx-auto max-w-3xl px-6 py-4">
         <div className="flex flex-row-reverse items-center justify-between md:flex-row">
-          {/* Left side - Navigation Links (Desktop) */}
           <div className="hidden items-center space-x-8 md:flex">
             {navigationLinks.map((link) => (
               <Link
@@ -85,7 +85,6 @@ const Navigation = () => {
             </Popover>
           </div>
 
-          {/* Right side - Social Icons */}
           <div className="flex items-center space-x-5">
             <a
               href="https://github.com/simonepizzamiglio"
@@ -121,6 +120,7 @@ const Navigation = () => {
             >
               <Mail size={20} aria-hidden="true" />
             </a>
+            <ThemeToggle />
           </div>
         </div>
       </div>

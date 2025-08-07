@@ -1,5 +1,5 @@
 import { loadAllMd } from '~/lib/posts';
-import BlogPostItem from '../components/blog-post-item';
+import BlogPostItem from '../../components/blog-post-item';
 import type { Route } from './+types/blog';
 
 export function meta() {

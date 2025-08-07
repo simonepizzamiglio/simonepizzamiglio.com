@@ -1,6 +1,6 @@
 import { loadMd } from '~/lib/posts';
-import type { Route } from './+types/blog-post';
 import DOMPurify from 'isomorphic-dompurify';
+import type { Route } from './+types/post';
 
 export const loader = async ({ params }: Route.ComponentProps) => {
   try {

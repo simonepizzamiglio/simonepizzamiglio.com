@@ -5,9 +5,10 @@ export default [
   route('about', './routes/about.tsx'),
   route('projects', './routes/projects.tsx'),
   ...prefix('blog', [
-    index('./routes/blog.tsx'),
-    route(':postId', './routes/blog-post.tsx'),
-    route('assets/*', './routes/blog.assets.$.tsx'),
+    index('./routes/blog/blog.tsx'),
+    route(':postId', './routes/blog/post.tsx'),
+    route('assets/*', './routes/blog/assets.$.tsx'),
   ]),
-  route('resume', './routes/resume.tsx'),
+  route('resume', './routes/resume.ts'),
+  route('action/set-theme', './routes/action/set-theme.ts'),
 ] satisfies RouteConfig;

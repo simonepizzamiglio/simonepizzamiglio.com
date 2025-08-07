@@ -1,6 +1,6 @@
 import { readFile } from 'fs/promises';
 import { resolve } from 'path';
-import type { Route } from './+types/blog.assets.$';
+import type { Route } from './+types/assets.$';
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
   const assetPath = params['*'];
