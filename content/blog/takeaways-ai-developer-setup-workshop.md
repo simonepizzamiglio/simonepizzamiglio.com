@@ -1,6 +1,6 @@
 ---
 title: Takeaways from AI Developer Setup Workshop
-description: Key insights and practical notes from Steve Kinney's AI Developer Setup workshop
+description: Key insights and notes from Steve Kinney's AI Developer Setup workshop
 date: 2025-07-31
 ---
 
