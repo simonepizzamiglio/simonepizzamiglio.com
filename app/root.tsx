@@ -61,7 +61,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const loaderData = useRouteLoaderData<Route.ComponentProps['loaderData']>('root');
   const posthogKey = loaderData?.posthogKey;
   const theme = useTheme();
-  console.log('🚀 ~ Layout:', { requestInfo: loaderData?.requestInfo, theme });
   const nonce = useNonce();
 
   return (

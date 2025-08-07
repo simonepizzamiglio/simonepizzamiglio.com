@@ -19,7 +19,6 @@ export const THEME_FETCHER_KEY = 'THEME_FETCHER';
 export function useTheme() {
   const hints = useHints();
   const requestInfo = useRequestInfo();
-  console.log('🚀 ~ useTheme:', { requestInfo, hints });
   const optimisticMode = useOptimisticThemeMode();
   if (optimisticMode) {
     return optimisticMode === 'system' ? hints.theme : optimisticMode;
@@ -40,7 +39,6 @@ export function useOptimisticThemeMode() {
       schema: ThemeFormSchema,
     });
     if (submission.status === 'success') {
-      console.log('🚀 ~ useOptimisticThemeMode:', { theme: submission.value.theme });
       return submission.value.theme;
     }
     return null;

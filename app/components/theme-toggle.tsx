@@ -11,7 +11,6 @@ const ThemeToggle = () => {
   const optimisticMode = useOptimisticThemeMode();
   const mode = optimisticMode ?? requestInfo.userPrefs.theme ?? 'system';
   const nextMode = mode === 'system' ? 'light' : mode === 'light' ? 'dark' : 'system';
-  console.log('🚀 ~ ThemeToggle:', { optimisticMode, mode, nextMode });
 
   return (
     <fetcher.Form method="POST" action="/action/set-theme">
