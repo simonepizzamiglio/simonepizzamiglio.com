@@ -23,7 +23,14 @@ export function useTheme() {
   if (optimisticMode) {
     return optimisticMode === 'system' ? hints.theme : optimisticMode;
   }
-  return requestInfo.userPrefs.theme ?? hints.theme;
+
+  // Prioritize user's explicit theme preference (from cookie) over client hints
+  // This prevents hydration mismatches on prerendered pages
+  if (requestInfo.userPrefs.theme) {
+    return requestInfo.userPrefs.theme;
+  }
+
+  return hints.theme;
 }
 
 /**

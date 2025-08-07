@@ -4,6 +4,7 @@ import type { Route } from '../+types/root';
 
 export function useRequestInfo() {
   const data = useRouteLoaderData<Route.ComponentProps['loaderData']>('root');
+  console.log('🚀 ~ useRequestInfo ~ data:', data);
 
   invariant(data?.requestInfo, 'No requestInfo found in root loader');
 
