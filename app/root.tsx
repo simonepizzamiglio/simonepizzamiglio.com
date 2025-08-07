@@ -46,22 +46,20 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export async function loader({ request }: Route.LoaderArgs) {
-  const requestInfo = {
-    hints: getHints(request),
-    userPrefs: {
-      theme: getTheme(request),
-    },
-  };
-
   return {
     posthogKey: process.env.POSTHOG_KEY,
-    requestInfo,
+    requestInfo: {
+      hints: getHints(request),
+      userPrefs: {
+        theme: getTheme(request),
+      },
+    },
   };
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const loaderData = useRouteLoaderData<Route.ComponentProps['loaderData']>('root');
-  console.log('🚀 ~ Layout ~ loaderData:', loaderData);
+  console.log('🚀 ~ Layout ~ loaderData:', loaderData?.requestInfo);
   const posthogKey = loaderData?.posthogKey;
   const theme = useTheme();
   console.log('🚀 ~ Layout ~ theme:', theme);
