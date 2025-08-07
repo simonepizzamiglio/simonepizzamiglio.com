@@ -20,7 +20,7 @@ const Blog = ({ loaderData }: Route.ComponentProps) => {
   return (
     <>
       <h1 className="mb-8 text-4xl font-bold">Blog</h1>
-      <p className="mb-12 leading-relaxed text-muted-foreground">
+      <p className="text-muted-foreground mb-12 leading-relaxed">
         This is my little corner of the internet where I share my thoughts and experiences on
         various topics, from technical challenges I've encountered to interesting things I've
         learned along the way. Consider this my digital notebook where I document whatever comes to

@@ -29,12 +29,12 @@ const BlogPost = ({ loaderData }: Route.ComponentProps) => {
       <meta property="og:title" content={post.meta.title} />
       <meta name="description" content={post.meta.description} />
       {/* The rest of your route content... */}
-      <article className="prose max-w-none break-words prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-ul:text-muted-foreground prose-li:text-muted-foreground">
-        <time className="text-sm text-primary" dateTime={post.meta.date.toISOString()}>
+      <article className="prose prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-ul:text-muted-foreground prose-li:text-muted-foreground max-w-none break-words">
+        <time className="text-primary text-sm" dateTime={post.meta.date.toISOString()}>
           {post.meta.date.toLocaleDateString()}
         </time>
-        <h1 className="mt-4 mb-4 text-4xl font-bold">{post.meta.title}</h1>
-        <p className="text-2xl text-foreground">
+        <h1 className="mb-4 mt-4 text-4xl font-bold">{post.meta.title}</h1>
+        <p className="text-foreground text-2xl">
           {post.meta.description.endsWith('.')
             ? post.meta.description
             : `${post.meta.description}.`}

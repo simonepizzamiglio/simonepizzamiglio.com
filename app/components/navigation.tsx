@@ -23,7 +23,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 right-0 left-0 z-50 bg-background/80 backdrop-blur-sm">
+    <nav className="bg-background/80 fixed left-0 right-0 top-0 z-50 backdrop-blur-sm">
       <div className="mx-auto max-w-3xl px-6 py-4">
         <div className="flex flex-row-reverse items-center justify-between md:flex-row">
           <div className="hidden items-center space-x-8 md:flex">
@@ -31,9 +31,9 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm transition-colors duration-300 hover:text-primary ${
+                className={`hover:text-primary text-sm transition-colors duration-300 ${
                   isActive(link.path)
-                    ? 'underline decoration-primary decoration-2 underline-offset-4'
+                    ? 'decoration-primary underline decoration-2 underline-offset-4'
                     : ''
                 }`}
               >
@@ -71,9 +71,9 @@ const Navigation = () => {
                       key={link.path}
                       to={link.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`px-2 py-1 text-sm transition-colors duration-300 hover:text-primary ${
+                      className={`hover:text-primary px-2 py-1 text-sm transition-colors duration-300 ${
                         isActive(link.path)
-                          ? 'underline decoration-primary decoration-2 underline-offset-4'
+                          ? 'decoration-primary underline decoration-2 underline-offset-4'
                           : ''
                       }`}
                     >
@@ -90,7 +90,7 @@ const Navigation = () => {
               href="https://github.com/simonepizzamiglio"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors duration-300 hover:text-primary"
+              className="text-muted-foreground hover:text-primary transition-colors duration-300"
               aria-label="GitHub profile (opens in new tab)"
             >
               <Github size={20} aria-hidden="true" />
@@ -99,7 +99,7 @@ const Navigation = () => {
               href="https://www.linkedin.com/in/simone-pizzamiglio/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors duration-300 hover:text-primary"
+              className="text-muted-foreground hover:text-primary transition-colors duration-300"
               aria-label="LinkedIn profile (opens in new tab)"
             >
               <Linkedin size={20} aria-hidden="true" />
@@ -108,14 +108,14 @@ const Navigation = () => {
               href="https://twitter.com/simonepizz"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground transition-colors duration-300 hover:text-primary"
+              className="text-muted-foreground hover:text-primary transition-colors duration-300"
               aria-label="Twitter profile (opens in new tab)"
             >
               <Twitter size={20} aria-hidden="true" />
             </a>
             <a
               href="mailto:me@simonepizzamiglio.com"
-              className="text-muted-foreground transition-colors duration-300 hover:text-primary"
+              className="text-muted-foreground hover:text-primary transition-colors duration-300"
               aria-label="Email contact"
             >
               <Mail size={20} aria-hidden="true" />

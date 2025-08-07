@@ -5,7 +5,7 @@ const Projects = () => {
   return (
     <>
       <h1 className="mb-8 text-4xl font-bold">Projects</h1>
-      <p className="mb-12 leading-relaxed text-muted-foreground">
+      <p className="text-muted-foreground mb-12 leading-relaxed">
         In my free time, which is not much, I explore new technologies by building projects.
       </p>
       <div className="grid gap-8 md:grid-cols-2">

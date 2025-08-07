@@ -17,7 +17,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       {/* Hero Section */}
       <section>
         <h1 className="mb-8 text-6xl font-bold"> Hey 👋 I&apos;m Simone</h1>
-        <p className="leading-relaxed text-muted-foreground">
+        <p className="text-muted-foreground leading-relaxed">
           I&apos;m a software engineer from Italy 🇮🇹 specializing in frontend development. I have a
           strong passion for building products and turning ideas into reality. Throughout my career
           career I&apos;ve had the opportunity to work across digital agencies, enterprises,

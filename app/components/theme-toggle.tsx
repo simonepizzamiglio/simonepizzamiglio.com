@@ -19,7 +19,7 @@ const ThemeToggle = () => {
         type="submit"
         variant="outline"
         size="sm"
-        className="p-2 text-muted-foreground transition-colors duration-300 hover:text-primary"
+        className="text-muted-foreground hover:text-primary p-2 transition-colors duration-300"
         aria-label={`Switch to ${nextMode} mode`}
       >
         {(() => {

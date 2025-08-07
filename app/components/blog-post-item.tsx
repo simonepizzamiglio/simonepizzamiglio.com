@@ -20,16 +20,16 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post, variant = 'default' }
     return (
       <Link to={`/blog/${post.slug}`} className="group">
         <article>
-          <h2 className="mb-4 text-xl font-semibold text-foreground transition-colors group-hover:text-primary">
+          <h2 className="text-foreground group-hover:text-primary mb-4 text-xl font-semibold transition-colors">
             {post.title}
           </h2>
           <time
-            className="mb-2 flex text-xs text-muted-foreground"
+            className="text-muted-foreground mb-2 flex text-xs"
             dateTime={post.date.toISOString()}
           >
             {formattedDate}
           </time>
-          <p className="mb-4 leading-relaxed text-muted-foreground">{post.description}</p>
+          <p className="text-muted-foreground mb-4 leading-relaxed">{post.description}</p>
           <ReadArticleButton />
         </article>
       </Link>
@@ -41,7 +41,7 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post, variant = 'default' }
       {/* Date column */}
       <div className="mt-6 hidden md:col-span-1 md:block">
         <time
-          className="text-sm leading-relaxed text-muted-foreground"
+          className="text-muted-foreground text-sm leading-relaxed"
           dateTime={post.date.toISOString()}
         >
           {formattedDate}
@@ -50,16 +50,16 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post, variant = 'default' }
 
       {/* Content column */}
       <div className="group relative md:col-span-3 md:px-4 md:py-6">
-        <div className="absolute -inset-x-0 -inset-y-0 z-0 scale-95 bg-secondary opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-0 sm:rounded-2xl"></div>
+        <div className="bg-secondary absolute -inset-x-0 -inset-y-0 z-0 scale-95 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-0 sm:rounded-2xl"></div>
         <Link to={`/blog/${post.slug}`} className="relative z-10">
-          <h2 className="mb-4 text-2xl font-semibold text-foreground">{post.title}</h2>
+          <h2 className="text-foreground mb-4 text-2xl font-semibold">{post.title}</h2>
           <time
-            className="mb-2 flex text-xs text-muted-foreground md:hidden"
+            className="text-muted-foreground mb-2 flex text-xs md:hidden"
             dateTime={post.date.toISOString()}
           >
             {formattedDate}
           </time>
-          <p className="pb-6 leading-relaxed text-muted-foreground">{post.description}</p>
+          <p className="text-muted-foreground pb-6 leading-relaxed">{post.description}</p>
           <ReadArticleButton />
         </Link>
       </div>

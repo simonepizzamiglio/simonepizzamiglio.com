@@ -173,7 +173,7 @@ const About = ({ loaderData }: Route.ComponentProps) => {
       {/* Introduction Section */}
       <section>
         <h1 className="mb-8 text-4xl font-bold">About Me</h1>
-        <div className="flex max-w-none flex-col gap-y-6 leading-relaxed text-muted-foreground">
+        <div className="text-muted-foreground flex max-w-none flex-col gap-y-6 leading-relaxed">
           <p>
             <b>Senior Frontend Engineer</b> with {yoe} years of experience, specializing in React
             and TypeScript for the past {yoe - 3}. I am a passionate product builder who truly
@@ -208,7 +208,7 @@ const About = ({ loaderData }: Route.ComponentProps) => {
               <h3 className="mb-2 font-semibold capitalize">{group.replace('-', ' ')}</h3>
               <div className="flex flex-wrap gap-2">
                 {skillList.map((skill) => (
-                  <span key={skill} className="rounded bg-muted px-2 py-1 text-sm">
+                  <span key={skill} className="bg-muted rounded px-2 py-1 text-sm">
                     {skill}
                   </span>
                 ))}
@@ -223,21 +223,21 @@ const About = ({ loaderData }: Route.ComponentProps) => {
         <h2 className="mb-8 text-3xl font-bold">Work Experience</h2>
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute top-2 bottom-0 left-[0.5px] w-px bg-primary"></div>
+          <div className="bg-primary absolute bottom-0 left-[0.5px] top-2 w-px"></div>
 
           {workExperience.map((company, companyIndex) => (
             <div key={companyIndex} className="relative pb-12 pl-8 last:pb-0">
               {/* Timeline dot */}
-              <div className="absolute top-2 left-0 h-4 w-4 -translate-x-1/2 transform rounded-full border-4 border-background bg-primary"></div>
+              <div className="border-background bg-primary absolute left-0 top-2 h-4 w-4 -translate-x-1/2 transform rounded-full border-4"></div>
 
               <div className="grid gap-6 md:grid-cols-3">
                 {/* Left side - Company info */}
                 <div className="md:col-span-1">
-                  <div className="mb-1 text-sm text-muted-foreground">
+                  <div className="text-muted-foreground mb-1 text-sm">
                     {company.startDate} - {company.endDate || 'Present'}
                   </div>
-                  <div className="mb-1 font-semibold text-foreground">{company.company}</div>
-                  <div className="mb-1 text-sm text-muted-foreground">{company.location}</div>
+                  <div className="text-foreground mb-1 font-semibold">{company.company}</div>
+                  <div className="text-muted-foreground mb-1 text-sm">{company.location}</div>
                 </div>
 
                 {/* Right side - Roles */}
@@ -252,16 +252,16 @@ const About = ({ loaderData }: Route.ComponentProps) => {
                         // className={roleIndex > 0 ? "border-t border-border pt-6" : ""}
                       >
                         <div className="mb-3 flex items-center gap-2">
-                          <h3 className="text-xl font-semibold text-foreground">{role.title}</h3>
-                          <span className="text-sm text-muted-foreground">• {duration}</span>
+                          <h3 className="text-foreground text-xl font-semibold">{role.title}</h3>
+                          <span className="text-muted-foreground text-sm">• {duration}</span>
                         </div>
                         <ul className="space-y-2">
                           {role.achievements.map((achievement, achievementIndex) => (
                             <li
                               key={achievementIndex}
-                              className="flex items-start leading-relaxed text-muted-foreground"
+                              className="text-muted-foreground flex items-start leading-relaxed"
                             >
-                              <span className="mr-3 flex-shrink-0 text-primary">•</span>
+                              <span className="text-primary mr-3 flex-shrink-0">•</span>
                               {achievement}
                             </li>
                           ))}
