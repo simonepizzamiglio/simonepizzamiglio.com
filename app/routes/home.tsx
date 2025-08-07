@@ -16,7 +16,10 @@ export default function Home({ loaderData }: Route.ComponentProps) {
     <div className="grid gap-16">
       {/* Hero Section */}
       <section>
-        <h1 className="mb-8 text-6xl font-bold"> Hey 👋 I&apos;m Simone</h1>
+        <h1 className="mb-8 text-6xl font-bold">
+          {' '}
+          Hey <span className="animate-wave inline-block">👋</span> I&apos;m Simone
+        </h1>
         <p className="text-muted-foreground leading-relaxed">
           I&apos;m a software engineer from Italy 🇮🇹 specializing in frontend development. I have a
           strong passion for building products and turning ideas into reality. Throughout my career
