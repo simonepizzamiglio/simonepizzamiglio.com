@@ -6,5 +6,8 @@
 /build/
 /dist/
 
+# Vercel
+.vercel/
+
 # Environment variables
 .env
