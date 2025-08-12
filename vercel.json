@@ -1,6 +1,6 @@
 {
   "framework": "react-router",
-  "rewrites": [
+  "redirects": [
     {
       "source": "/:path*",
       "has": [
@@ -9,7 +9,8 @@
           "value": "blog.simonepizzamiglio.com"
         }
       ],
-      "destination": "/blog/:path*"
+      "destination": "https://simonepizzamiglio.com/blog/:path*",
+      "permanent": true
     }
   ]
 }
