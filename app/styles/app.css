@@ -71,8 +71,8 @@
   --sidebar-accent-foreground: oklch(0.3353 0.0132 2.7676);
   --sidebar-border: oklch(0.9296 0.037 38.6868);
   --sidebar-ring: oklch(0.7357 0.1641 34.7091);
-  --font-sans: Montserrat, sans-serif;
-  --font-serif: 'Space Grotesk', serif;
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-serif: Merriweather, serif;
   --font-mono: Ubuntu Mono, monospace;
   --radius: 0.625rem;
   --shadow-2xs: 0px 6px 12px -3px hsl(0 0% 0% / 0.04);
@@ -120,8 +120,8 @@
   --sidebar-accent-foreground: oklch(0.2569 0.0169 352.4042);
   --sidebar-border: oklch(0.3637 0.0203 342.2664);
   --sidebar-ring: oklch(0.7357 0.1641 34.7091);
-  --font-sans: Montserrat, sans-serif;
-  --font-serif: 'Space Grotesk', serif;
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-serif: Merriweather, serif;
   --font-mono: Ubuntu Mono, monospace;
   --radius: 0.625rem;
   --shadow-2xs: 0px 6px 12px -3px hsl(0 0% 0% / 0.04);
@@ -199,6 +199,6 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-serif;
+    @apply bg-background text-foreground font-sans;
   }
 }
