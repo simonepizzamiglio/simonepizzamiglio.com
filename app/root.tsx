@@ -24,17 +24,17 @@ export const meta: Route.MetaFunction = () => [
 
   // Open Graph tags
   { property: 'og:type', content: 'website' },
-  { property: 'og:title', content: 'Your Website Title' },
-  { property: 'og:description', content: 'Your website description' },
-  { property: 'og:image', content: '/og-image.jpg' },
+  { property: 'og:title', content: 'Simone Pizzamiglio' },
+  { property: 'og:description', content: 'Simone Pizzamiglio - Software Engineer' },
+  { property: 'og:image', content: 'https://simonepizzamiglio.com/og-image.jpg' },
   { property: 'og:image:width', content: '1200' },
   { property: 'og:image:height', content: '630' },
 
   // Twitter Card tags
   { name: 'twitter:card', content: 'summary_large_image' },
-  { name: 'twitter:title', content: 'Your Website Title' },
-  { name: 'twitter:description', content: 'Your website description' },
-  { name: 'twitter:image', content: '/og-image.jpg' },
+  { name: 'twitter:title', content: 'Simone Pizzamiglio' },
+  { name: 'twitter:description', content: 'Simone Pizzamiglio - Software Engineer' },
+  { name: 'twitter:image', content: 'https://simonepizzamiglio.com/og-image.jpg' },
 ];
 
 export const links: Route.LinksFunction = () => [
