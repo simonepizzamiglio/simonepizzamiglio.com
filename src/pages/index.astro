@@ -1,0 +1,88 @@
+---
+import BaseLayout from "#/layouts/BaseLayout.astro"
+import BlogPostItem from "#/components/BlogPostItem.astro"
+import { projects } from "#/data/projects"
+import ProjectCard from "#/components/ProjectCard.astro"
+
+import { getCollection } from "astro:content"
+
+const blogPosts = (await getCollection("blog"))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 2)
+---
+
+<BaseLayout title="Simone Pizzamiglio">
+	<div class="grid gap-16">
+		<section>
+			<h1 class="mb-8 text-5xl font-bold flex items-center">
+				Hey <span class="animate-wave inline-block px-2">👋 </span> I&apos;m Simone
+			</h1>
+			<p class="leading-relaxed max-w-3xl">
+				I’m a software engineer from Italy 🇮🇹 who enjoys building products and
+				turning ideas into real software. This is my digital home where I share
+				thoughts, experiments, and projects.
+			</p>
+		</section>
+
+		<section>
+			<h2 class="mb-10 text-3xl font-bold">Recent open-source projects</h2>
+
+			<div class="max-w-md">
+				{projects.map((project) => <ProjectCard project={project} />)}
+			</div>
+		</section>
+
+		<section>
+			<h2 class="mb-10 text-3xl font-bold">Thoughts on software development</h2>
+
+			<div class="flex flex-col gap-6">
+				{
+					blogPosts.map((post) => (
+						<BlogPostItem
+							post={{
+								slug: post.id,
+								title: post.data.title,
+								description: post.data.description,
+								pubDate: post.data.pubDate,
+							}}
+							variant="homepage"
+						/>
+					))
+				}
+			</div>
+		</section>
+	</div>
+</BaseLayout>
+
+<style>
+	.animate-wave {
+		animation: wave-animation 2.5s infinite;
+	}
+
+	@keyframes wave-animation {
+		0% {
+			transform: rotate(0deg);
+		}
+		10% {
+			transform: rotate(14deg);
+		}
+		20% {
+			transform: rotate(-8deg);
+		}
+		30% {
+			transform: rotate(14deg);
+		}
+		40% {
+			transform: rotate(-4deg);
+		}
+		50% {
+			transform: rotate(10deg);
+		}
+		60% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(0deg);
+		}
+	}
+</style>

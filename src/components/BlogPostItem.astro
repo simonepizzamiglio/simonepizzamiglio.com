@@ -1,0 +1,86 @@
+---
+import { ChevronRight } from "@lucide/astro"
+
+interface Props {
+	post: {
+		slug: string
+		title: string
+		description: string
+		pubDate: Date
+	}
+	variant?: "default" | "homepage"
+}
+
+const { post, variant = "default" } = Astro.props
+
+const formattedDate = new Date(post.pubDate).toLocaleDateString("en-US", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+})
+---
+
+{
+	variant === "homepage" && (
+		<a href={`/blog/${post.slug}`} class="block mb-12 group">
+			<article>
+				<h2 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+					{post.title}
+				</h2>
+				<time
+					class="text-base-content text-xs uppercase tracking-widest mb-4"
+					datetime={post.pubDate.toISOString()}
+				>
+					{formattedDate}
+				</time>
+				<p class="mb-4 leading-relaxed">{post.description}</p>
+				<span class="text-primary text-sm flex items-center hover:underline decoration-1 underline-offset-4">
+					Read article
+					<ChevronRight
+						size={16}
+						class="ml-1 transition-transform group-hover:translate-x-1"
+						aria-hidden="true"
+					/>
+				</span>
+			</article>
+		</a>
+	)
+}
+
+{
+	variant === "default" && (
+		<article class="grid grid-cols-1 items-start gap-8 md:grid-cols-4">
+			{/* Date column */}
+			<div class="mt-6 hidden md:col-span-1 md:block">
+				<time class="text-muted-foreground text-sm leading-relaxed">
+					{formattedDate}
+				</time>
+			</div>
+
+			{/* Content column */}
+			<div class="group relative md:col-span-3 md:px-4 md:py-6">
+				<div class="bg-base-300/60 border border-base-100 absolute -inset-x-0 -inset-y-0 z-0 scale-98 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-0 sm:rounded-2xl" />
+				<a href={`/blog/${post.slug}`} class="relative z-10 block">
+					<h2 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+						{post.title}
+					</h2>
+					<time
+						class="text-base-content text-xs uppercase tracking-widest mb-4"
+						datetime={post.pubDate.toISOString()}
+					>
+						{formattedDate}
+					</time>
+					<p class="mb-4 leading-relaxed">{post.description}</p>
+					<span class="text-primary text-sm flex items-center hover:underline decoration-1 underline-offset-4">
+						Read article
+						<ChevronRight
+							size={16}
+							class="ml-1 transition-transform group-hover:translate-x-1"
+							aria-hidden="true"
+						/>
+					</span>
+				</a>
+			</div>
+		</article>
+	)
+}

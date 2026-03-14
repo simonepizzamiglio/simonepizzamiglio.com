@@ -1,0 +1,39 @@
+---
+import "#/styles/global.css"
+import Header from "#/components/Header.astro"
+import BaseHead from "#/components/BaseHead.astro"
+
+interface Props {
+	title?: string
+	description?: string
+}
+
+const {
+	title = "Simone Pizzamiglio",
+	description = "Personal website of Simone Pizzamiglio, a software engineer building web products and sharing thoughts, experiments, and projects.",
+} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body class="min-h-screen">
+		<div class="bg-grid-pattern"></div>
+		<div class="bg-glow-1"></div>
+		<div class="bg-glow-2"></div>
+		<div class="bg-glow-3"></div>
+		<div class="bg-glow-4"></div>
+		<div class="bg-glow-5"></div>
+		<div class="bg-glow-6"></div>
+		<div class="bg-glow-7"></div>
+		<div class="bg-glow-8"></div>
+		<div class="bg-glow-9"></div>
+		<div class="bg-glow-10"></div>
+		<Header />
+		<main class="mx-auto max-w-3xl px-6 py-24">
+			<slot />
+		</main>
+	</body>
+</html>
