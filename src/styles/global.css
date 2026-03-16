@@ -38,9 +38,9 @@
 	--color-warning-content: oklch(41% 0.112 45.904);
 	--color-error: oklch(71% 0.194 13.428);
 	--color-error-content: oklch(27% 0.105 12.094);
-	--radius-selector: 0.5rem;
-	--radius-field: 0.25rem;
-	--radius-box: 0.5rem;
+	--radius-selector: 1rem;
+	--radius-field: 0.5rem;
+	--radius-box: 1rem;
 	--size-selector: 0.25rem;
 	--size-field: 0.25rem;
 	--border: 1px;
@@ -54,13 +54,13 @@
 	prefersdark: true;
 	color-scheme: dark;
 
-	--color-base-100: oklch(28.822% 0.022 277.508);
-	--color-base-200: oklch(26.805% 0.02 277.508);
-	--color-base-300: oklch(24.787% 0.019 277.508);
+	--color-base-100: oklch(27% 0.006 286.033);
+	--color-base-200: oklch(21% 0.006 285.885);
+	--color-base-300: oklch(14% 0.005 285.823);
 	--color-base-content: oklch(97.747% 0.007 106.545);
-	--color-primary: oklch(0.7762 0.1116 188.54);
+	--color-primary: oklch(67% 0.182 276.935);
 	--color-primary-content: oklch(98% 0.003 247.858);
-	--color-secondary: oklch(0.8896 0.0064 75.4);
+	--color-secondary: oklch(88.96% 0.006 75.4);
 	--color-secondary-content: oklch(14.84% 0.029 301.883);
 	--color-accent: oklch(83.392% 0.124 66.558);
 	--color-accent-content: oklch(38% 0.063 188.416);
@@ -280,8 +280,8 @@ body {
 .bg-grid-pattern {
 	background-color: var(--color-base-200);
 	background-image:
-		linear-gradient(to right, var(--color-base-300) 1px, transparent 1px),
-		linear-gradient(to bottom, var(--color-base-300) 1px, transparent 1px);
+		linear-gradient(to right, var(--color-base-300) 0.75px, transparent 0.75px),
+		linear-gradient(to bottom, var(--color-base-300) 0.75px, transparent 0.75px);
 	background-size: 60px 60px;
 	position: fixed;
 	top: 0;
@@ -289,6 +289,22 @@ body {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
+}
+
+@media (prefers-color-scheme: dark) {
+	.bg-grid-pattern {
+		background-image:
+			linear-gradient(
+				to right,
+				color-mix(in srgb, var(--color-base-300), transparent 50%) 0.75px,
+				transparent 0.75px
+			),
+			linear-gradient(
+				to bottom,
+				color-mix(in srgb, var(--color-base-300), transparent 50%) 0.75px,
+				transparent 0.75px
+			);
+	}
 }
 
 .bg-glow-1 {

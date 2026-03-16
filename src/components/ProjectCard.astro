@@ -14,7 +14,7 @@ interface Props {
 const { project } = Astro.props
 ---
 
-<div class="bg-base-300/60 border border-base-100 rounded-3xl p-8">
+<div class="bg-primary/10 border border-base-100 rounded-3xl p-8">
 	<h2 class="text-xl font-bold mb-4 text-base-content">{project.name}</h2>
 	<p class="text-sm mb-6 leading-relaxed text-base-content/80">
 		{project.description}
@@ -33,7 +33,7 @@ const { project } = Astro.props
 			href={project.githubUrl}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="flex items-center px-4 py-2 bg-primary/90 hover:bg-primary text-sm rounded-lg transition-colors text-base-100"
+			class="btn btn-primary"
 			aria-label={`View ${project.name} on GitHub (opens in new tab)`}
 		>
 			<Github size={16} class="mr-2" aria-hidden="true" />
@@ -45,7 +45,7 @@ const { project } = Astro.props
 					href={project.websiteUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex items-center px-4 py-2 bg-primary/90 hover:bg-primary text-sm rounded-lg transition-colors text-base-100"
+					class="btn btn-primary"
 					aria-label={`Visit ${project.name} website (opens in new tab)`}
 				>
 					<Globe size={16} class="mr-2 " aria-hidden="true" />
