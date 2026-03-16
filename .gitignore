@@ -26,3 +26,6 @@ pnpm-debug.log*
 # opencode
 openspec
 .opencode
+
+# wrangler
+.wrangler
