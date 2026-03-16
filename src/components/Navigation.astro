@@ -1,0 +1,200 @@
+---
+import { Github, Linkedin, Twitter, Mail, Moon, Sun } from "@lucide/astro"
+
+const navigationLinks = [
+	{ path: "/", label: "Home" },
+	{ path: "/about", label: "About" },
+	{ path: "/projects", label: "Projects" },
+	{ path: "/blog", label: "Blog" },
+]
+
+const currentPath = Astro.url.pathname
+
+const isActive = (path: string) => {
+	if (path === "/" && currentPath === "/") return true
+	if (path !== "/" && currentPath?.startsWith(path)) return true
+	return false
+}
+---
+
+<nav class="bg-background/80 fixed left-0 right-0 top-0 z-50 backdrop-blur-sm">
+	<div class="mx-auto max-w-3xl px-6 py-4">
+		<div class="flex items-center justify-between">
+			<div class="hidden items-center space-x-6 md:flex">
+				{
+					navigationLinks.map((link) => (
+						<a
+							href={link.path}
+							class:list={[
+								"text-sm font-medium transition-colors duration-200 hover:!text-base-content",
+								isActive(link.path)
+									? "!text-base-content decoration-primary underline underline-offset-8 decoration-2"
+									: "!text-base-content/70",
+							]}
+						>
+							{link.label}
+						</a>
+					))
+				}
+			</div>
+
+			<div class="flex items-center space-x-3">
+				<a
+					href="https://github.com/simonepizzamiglio"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-base-content/70 hover:text-base-content"
+					aria-label="GitHub profile (opens in new tab)"
+				>
+					<Github size={20} aria-hidden="true" />
+				</a>
+				<a
+					href="https://www.linkedin.com/in/simone-pizzamiglio/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-base-content/70 hover:text-base-content"
+					aria-label="LinkedIn profile (opens in new tab)"
+				>
+					<Linkedin size={20} aria-hidden="true" />
+				</a>
+				<a
+					href="https://twitter.com/simonepizz"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-base-content/70 hover:text-base-content"
+					aria-label="Twitter profile (opens in new tab)"
+				>
+					<Twitter size={20} aria-hidden="true" />
+				</a>
+				<a
+					href="mailto:me@simonepizzamiglio.com"
+					class="text-base-content/70 hover:text-base-content"
+					aria-label="Email contact"
+				>
+					<Mail size={20} aria-hidden="true" />
+				</a>
+				<button
+					id="theme-toggle"
+					type="button"
+					class="btn btn-ghost btn-sm btn-circle text-base-content/70 hover:text-base-content hover:bg-base-content/10"
+					aria-label="Switch to dark theme"
+					aria-pressed="false"
+				>
+					<Sun
+						id="theme-icon-sun"
+						size={18}
+						class="hidden"
+						aria-hidden="true"
+					/>
+					<Moon
+						id="theme-icon-moon"
+						size={18}
+						class="hidden"
+						aria-hidden="true"
+					/>
+					<span class="sr-only" id="theme-toggle-text">Toggle theme</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</nav>
+
+	<script>
+		// Keep storage keys and theme values centralized so the inline script,
+		// persisted preference, and DaisyUI's `data-theme` stay aligned.
+		const THEME_KEY = "theme-preference"
+		const SOURCE_KEY = "theme-source"
+		const DARK_THEME = "dark"
+		const LIGHT_THEME = "light"
+		const USER_SOURCE = "user"
+		const SYSTEM_SOURCE = "system"
+
+	// Query the controls once on page load. This script runs in the browser,
+	// so it can safely read the rendered button/icon elements directly.
+	const toggleButton = document.getElementById("theme-toggle")
+	const toggleText = document.getElementById("theme-toggle-text")
+	const sunIcon = document.getElementById("theme-icon-sun")
+	const moonIcon = document.getElementById("theme-icon-moon")
+	const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+
+	// The OS preference is the fallback whenever there is no explicit user choice.
+	const getSystemTheme = () => (mediaQuery.matches ? DARK_THEME : LIGHT_THEME)
+
+	const applyTheme = (theme: string) => {
+		// DaisyUI reads `data-theme`, while `color-scheme` keeps built-in browser UI
+		// like form controls in sync with the active theme.
+		document.documentElement.dataset.theme = theme
+		document.documentElement.style.colorScheme =
+			theme === DARK_THEME ? "dark" : "light"
+	}
+
+	const setToggleState = (theme: string) => {
+		if (!toggleButton || !toggleText || !sunIcon || !moonIcon) return
+
+		// The button label always describes the next action, while the pressed state
+		// reflects whether dark mode is currently active.
+		const isDark = theme === DARK_THEME
+		toggleButton.setAttribute("aria-pressed", String(isDark))
+		toggleButton.setAttribute(
+			"aria-label",
+			isDark ? "Switch to light theme" : "Switch to dark theme"
+		)
+		toggleText.textContent = isDark
+			? "Switch to light theme"
+			: "Switch to dark theme"
+
+		sunIcon.classList.toggle("hidden", isDark)
+		moonIcon.classList.toggle("hidden", !isDark)
+	}
+
+		const getCurrentTheme = () => {
+			// If another script already set a valid theme on `<html>`, reuse it instead
+			// of recomputing from system preference.
+			const htmlTheme = document.documentElement.dataset.theme
+			if (htmlTheme === DARK_THEME || htmlTheme === LIGHT_THEME) {
+				return htmlTheme
+			}
+			return getSystemTheme()
+		}
+
+		const handleSystemChange = () => {
+			try {
+				// Only follow OS theme changes when the site is configured to defer to
+				// the system. A user-selected theme should remain stable.
+			const source = localStorage.getItem(SOURCE_KEY)
+			if (source !== SYSTEM_SOURCE) return
+
+				const nextTheme = getSystemTheme()
+				applyTheme(nextTheme)
+				setToggleState(nextTheme)
+				localStorage.setItem(THEME_KEY, nextTheme)
+			} catch {
+				applyTheme(getSystemTheme())
+				setToggleState(getSystemTheme())
+			}
+		}
+
+	if (toggleButton) {
+		// Initialize the visible state from whatever theme is active when the
+		// navigation hydrates, then keep future clicks in sync with storage.
+		const initialTheme = getCurrentTheme()
+		setToggleState(initialTheme)
+
+		toggleButton.addEventListener("click", () => {
+			const currentTheme = getCurrentTheme()
+			const nextTheme = currentTheme === DARK_THEME ? LIGHT_THEME : DARK_THEME
+
+			applyTheme(nextTheme)
+			setToggleState(nextTheme)
+
+			try {
+				localStorage.setItem(THEME_KEY, nextTheme)
+				localStorage.setItem(SOURCE_KEY, USER_SOURCE)
+			} catch {
+				// Ignore storage failures in private mode or restricted contexts.
+			}
+		})
+	}
+
+	mediaQuery.addEventListener("change", handleSystemChange)
+</script>

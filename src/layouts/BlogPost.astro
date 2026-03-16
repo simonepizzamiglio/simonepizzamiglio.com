@@ -1,0 +1,69 @@
+---
+import "#/styles/global.css"
+import BaseHead from "#/components/BaseHead.astro"
+import FormattedDate from "#/components/FormattedDate.astro"
+import Header from "#/components/Header.astro"
+import type { CollectionEntry } from "astro:content"
+import { ChevronLeft } from "@lucide/astro"
+
+type Props = CollectionEntry<"blog">["data"]
+
+const { title, description, pubDate, updatedDate } = Astro.props
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+
+	<body>
+		<div class="bg-grid-pattern"></div>
+		<div class="bg-glow-1"></div>
+		<div class="bg-glow-2"></div>
+		<div class="bg-glow-3"></div>
+		<div class="bg-glow-4"></div>
+		<div class="bg-glow-5"></div>
+		<div class="bg-glow-6"></div>
+		<div class="bg-glow-7"></div>
+		<div class="bg-glow-8"></div>
+		<div class="bg-glow-9"></div>
+		<div class="bg-glow-10"></div>
+		<Header />
+		<main class="mx-auto max-w-3xl px-6 py-24">
+			<article>
+				<!-- <div class="hero-image">
+					{
+						heroImage && (
+							<Image width={1020} height={510} src={heroImage} alt="" />
+						)
+					}
+				</div> -->
+				<div class="prose prose-invert prose-md max-w-none">
+					<a
+						href="/blog"
+						class="group inline-flex no-underline items-center text-primary hover:underline mb-6 text-sm decoration-1 underline-offset-4"
+					>
+						<ChevronLeft
+							size={16}
+							class="mr-1 transition-transform group-hover:-translate-x-1"
+							aria-hidden="true"
+						/>
+						Back to blog
+					</a>
+					<div class="date text-sm mb-6">
+						<FormattedDate date={pubDate} />
+						{
+							updatedDate && (
+								<div class="last-updated-on">
+									Last updated on <FormattedDate date={updatedDate} />
+								</div>
+							)
+						}
+					</div>
+					<h1>{title}</h1>
+					<slot />
+				</div>
+			</article>
+		</main>
+	</body>
+</html>

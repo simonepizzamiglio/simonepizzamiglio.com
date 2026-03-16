@@ -1,0 +1,39 @@
+---
+import BaseLayout from "#/layouts/BaseLayout.astro"
+import BlogPostItem from "#/components/BlogPostItem.astro"
+
+import { getCollection } from "astro:content"
+
+const posts = (await getCollection("blog")).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
+---
+
+<BaseLayout
+	title="Blog - Simone Pizzamiglio"
+	description="Thoughts, stories and ideas."
+>
+	<h1 class="mb-8 text-5xl font-bold">Blog</h1>
+	<p class="mb-12 leading-relaxed">
+		This is my little corner of internet where I share my thoughts and
+		experiences on various topics, from technical challenges I've encountered to
+		interesting things I've learned along the way. Consider this my digital
+		notebook where I document whatever comes to mind about stuff I've worked on
+		or experienced.
+	</p>
+	<div class="space-y-8">
+		{
+			posts.map((post) => (
+				<BlogPostItem
+					post={{
+						slug: post.id,
+						title: post.data.title,
+						description: post.data.description,
+						pubDate: post.data.pubDate,
+					}}
+					variant="default"
+				/>
+			))
+		}
+	</div>
+</BaseLayout>

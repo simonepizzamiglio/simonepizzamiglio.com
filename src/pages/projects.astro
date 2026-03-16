@@ -1,0 +1,19 @@
+---
+import BaseLayout from "#/layouts/BaseLayout.astro"
+import ProjectCard from "#/components/ProjectCard.astro"
+import { projects } from "#/data/projects"
+---
+
+<BaseLayout
+	title="Projects - Simone Pizzamiglio"
+	description="Projects by Simone Pizzamiglio"
+>
+	<h1 class="mb-8 text-5xl font-bold">Projects</h1>
+	<p class="mb-12 leading-relaxed">
+		In my free time, which is not much, I explore new technologies by building
+		projects.
+	</p>
+	<div class="grid gap-8 md:grid-cols-2">
+		{projects.map((project) => <ProjectCard project={project} />)}
+	</div>
+</BaseLayout>

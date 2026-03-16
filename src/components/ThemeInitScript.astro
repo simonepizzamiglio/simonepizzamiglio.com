@@ -1,0 +1,50 @@
+<script is:inline>
+	;(() => {
+		// This runs before the rest of the page hydrates so the correct theme is
+		// applied immediately and the user avoids a flash of the wrong colors.
+		const THEME_KEY = "theme-preference"
+		const SOURCE_KEY = "theme-source"
+		const DARK_THEME = "dark"
+		const LIGHT_THEME = "light"
+		const USER_SOURCE = "user"
+		const SYSTEM_SOURCE = "system"
+
+		// Only the two supported DaisyUI themes are accepted from storage.
+		const isValidTheme = (value) =>
+			value === DARK_THEME || value === LIGHT_THEME
+		const getSystemTheme = () => {
+			// Fall back to the OS preference when there is no explicit user choice.
+			return window.matchMedia("(prefers-color-scheme: dark)").matches
+				? DARK_THEME
+				: LIGHT_THEME
+		}
+
+		try {
+			const storedTheme = localStorage.getItem(THEME_KEY)
+			const storedSource = localStorage.getItem(SOURCE_KEY)
+			const hasUserTheme =
+				storedSource === USER_SOURCE && isValidTheme(storedTheme)
+			// Respect a valid user-selected theme; otherwise mirror the system theme.
+			const resolvedTheme = hasUserTheme ? storedTheme : getSystemTheme()
+			const resolvedSource = hasUserTheme ? USER_SOURCE : SYSTEM_SOURCE
+
+			// DaisyUI uses `data-theme`, while `color-scheme` keeps native browser
+			// controls aligned with the selected light/dark mode.
+			document.documentElement.dataset.theme = resolvedTheme
+			document.documentElement.style.colorScheme =
+				resolvedTheme === DARK_THEME ? "dark" : "light"
+
+			// Normalize storage so later scripts can tell whether the active theme is
+			// user-controlled or following the operating system.
+			localStorage.setItem(THEME_KEY, resolvedTheme)
+			localStorage.setItem(SOURCE_KEY, resolvedSource)
+		} catch {
+			// Storage can fail in restricted contexts, so fall back to a best-effort
+			// system theme without blocking initial render.
+			const fallbackTheme = getSystemTheme()
+			document.documentElement.dataset.theme = fallbackTheme
+			document.documentElement.style.colorScheme =
+				fallbackTheme === DARK_THEME ? "dark" : "light"
+		}
+	})()
+</script>
