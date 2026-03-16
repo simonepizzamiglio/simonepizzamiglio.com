@@ -13,6 +13,7 @@
 		"lint:fix": "eslint . --fix"
 	},
 	"dependencies": {
+		"@astrojs/cloudflare": "^12.6.12",
 		"@astrojs/mdx": "^4.3.13",
 		"@astrojs/rss": "^4.0.15",
 		"@astrojs/sitemap": "^3.7.1",
@@ -35,6 +36,7 @@
 		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"globals": "^17.3.0",
 		"prettier": "^3.8.1",
-		"prettier-plugin-astro": "^0.14.1"
+		"prettier-plugin-astro": "^0.14.1",
+		"wrangler": "^4.73.0"
 	}
 }
