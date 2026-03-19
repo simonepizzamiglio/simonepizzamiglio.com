@@ -1,5 +1,14 @@
 ---
-import { Github, Linkedin, Twitter, Mail, Moon, Sun } from "@lucide/astro"
+import {
+	Github,
+	Linkedin,
+	Twitter,
+	Mail,
+	Moon,
+	Sun,
+	Menu,
+	X,
+} from "@lucide/astro"
 
 const navigationLinks = [
 	{ path: "/", label: "Home" },
@@ -38,76 +47,124 @@ const isActive = (path: string) => {
 				}
 			</div>
 
-			<div class="flex items-center space-x-3">
-				<a
-					href="https://github.com/simonepizzamiglio"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-base-content/70 hover:text-base-content"
-					aria-label="GitHub profile (opens in new tab)"
-				>
-					<Github size={20} aria-hidden="true" />
-				</a>
-				<a
-					href="https://www.linkedin.com/in/simone-pizzamiglio/"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-base-content/70 hover:text-base-content"
-					aria-label="LinkedIn profile (opens in new tab)"
-				>
-					<Linkedin size={20} aria-hidden="true" />
-				</a>
-				<a
-					href="https://twitter.com/simonepizz"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-base-content/70 hover:text-base-content"
-					aria-label="Twitter profile (opens in new tab)"
-				>
-					<Twitter size={20} aria-hidden="true" />
-				</a>
-				<a
-					href="mailto:me@simonepizzamiglio.com"
-					class="text-base-content/70 hover:text-base-content"
-					aria-label="Email contact"
-				>
-					<Mail size={20} aria-hidden="true" />
-				</a>
-				<button
-					id="theme-toggle"
-					type="button"
-					class="btn btn-ghost btn-sm btn-circle text-base-content/70 hover:text-base-content hover:bg-base-content/10"
-					aria-label="Switch to dark theme"
-					aria-pressed="false"
-				>
-					<Sun
-						id="theme-icon-sun"
-						size={18}
-						class="hidden"
-						aria-hidden="true"
-					/>
-					<Moon
-						id="theme-icon-moon"
-						size={18}
-						class="hidden"
-						aria-hidden="true"
-					/>
-					<span class="sr-only" id="theme-toggle-text">Toggle theme</span>
-				</button>
+			<div
+				class="relative flex gap-3 w-full md:w-auto items-center justify-between"
+			>
+				<details id="mobile-menu-disclosure" class="md:hidden">
+					<summary
+						id="mobile-menu-toggle"
+						class="btn btn-ghost btn-sm btn-circle text-base-content/70 hover:text-base-content hover:bg-base-content/10"
+						aria-controls="mobile-menu"
+						aria-label="Open navigation menu"
+					>
+						<Menu id="mobile-menu-icon-open" size={18} aria-hidden="true" />
+						<X
+							id="mobile-menu-icon-close"
+							size={18}
+							class="hidden"
+							aria-hidden="true"
+						/>
+						<span class="sr-only" id="mobile-menu-toggle-text">
+							Open navigation menu
+						</span>
+					</summary>
+
+					<div
+						id="mobile-menu"
+						class="mobile-menu-panel absolute left-0 top-full z-10 mt-3 w-[min(20rem,calc(100vw-3rem))] rounded-3xl border border-base-content/10 bg-base-100/95 p-4 shadow-lg"
+					>
+						<div class="flex flex-col gap-3">
+							{
+								navigationLinks.map((link) => (
+									<a
+										href={link.path}
+										class:list={[
+											"rounded-2xl px-4 py-3 text-sm font-medium transition-colors duration-200 hover:bg-primary/10 hover:!text-base-content",
+											isActive(link.path)
+												? "!text-base-content decoration-primary underline underline-offset-8 decoration-2"
+												: "!text-base-content/70",
+										]}
+										data-mobile-menu-link
+									>
+										{link.label}
+									</a>
+								))
+							}
+						</div>
+					</div>
+				</details>
+
+				<div class="flex items-center space-x-3">
+					<a
+						href="https://github.com/simonepizzamiglio"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-base-content/70 hover:text-base-content"
+						aria-label="GitHub profile (opens in new tab)"
+					>
+						<Github size={20} aria-hidden="true" />
+					</a>
+					<a
+						href="https://www.linkedin.com/in/simone-pizzamiglio/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-base-content/70 hover:text-base-content"
+						aria-label="LinkedIn profile (opens in new tab)"
+					>
+						<Linkedin size={20} aria-hidden="true" />
+					</a>
+					<a
+						href="https://twitter.com/simonepizz"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="text-base-content/70 hover:text-base-content"
+						aria-label="Twitter profile (opens in new tab)"
+					>
+						<Twitter size={20} aria-hidden="true" />
+					</a>
+					<a
+						href="mailto:me@simonepizzamiglio.com"
+						class="text-base-content/70 hover:text-base-content"
+						aria-label="Email contact"
+					>
+						<Mail size={20} aria-hidden="true" />
+					</a>
+					<button
+						id="theme-toggle"
+						type="button"
+						class="btn btn-ghost btn-sm btn-circle text-base-content/70 hover:text-base-content hover:bg-base-content/10"
+						aria-label="Switch to dark theme"
+						aria-pressed="false"
+					>
+						<Sun
+							id="theme-icon-sun"
+							size={18}
+							class="hidden"
+							aria-hidden="true"
+						/>
+						<Moon
+							id="theme-icon-moon"
+							size={18}
+							class="hidden"
+							aria-hidden="true"
+						/>
+						<span class="sr-only" id="theme-toggle-text">Toggle theme</span>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
 </nav>
 
-	<script>
-		// Keep storage keys and theme values centralized so the inline script,
-		// persisted preference, and DaisyUI's `data-theme` stay aligned.
-		const THEME_KEY = "theme-preference"
-		const SOURCE_KEY = "theme-source"
-		const DARK_THEME = "dark"
-		const LIGHT_THEME = "light"
-		const USER_SOURCE = "user"
-		const SYSTEM_SOURCE = "system"
+<script>
+	// Keep storage keys and theme values centralized so the inline script,
+	// persisted preference, and DaisyUI's `data-theme` stay aligned.
+	const THEME_KEY = "theme-preference"
+	const SOURCE_KEY = "theme-source"
+	const DARK_THEME = "dark"
+	const LIGHT_THEME = "light"
+	const USER_SOURCE = "user"
+	const SYSTEM_SOURCE = "system"
 
 	// Query the controls once on page load. This script runs in the browser,
 	// so it can safely read the rendered button/icon elements directly.
@@ -116,6 +173,24 @@ const isActive = (path: string) => {
 	const sunIcon = document.getElementById("theme-icon-sun")
 	const moonIcon = document.getElementById("theme-icon-moon")
 	const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+	const desktopNavQuery = window.matchMedia("(min-width: 768px)")
+	// The menu disclosure works natively without JavaScript. Everything below this
+	// point enhances that baseline with synchronized labels/icons and richer keyboard
+	// and pointer behavior.
+	const mobileMenuDisclosure = document.getElementById("mobile-menu-disclosure")
+	const mobileMenuToggle = document.getElementById("mobile-menu-toggle")
+	const mobileMenu = document.getElementById("mobile-menu")
+	const mobileMenuToggleText = document.getElementById(
+		"mobile-menu-toggle-text"
+	)
+	const mobileMenuOpenIcon = document.getElementById("mobile-menu-icon-open")
+	const mobileMenuCloseIcon = document.getElementById("mobile-menu-icon-close")
+	const mobileMenuLinks = document.querySelectorAll("[data-mobile-menu-link]")
+	const mobileMenuFocusableSelectors = [
+		'a[href]:not([tabindex="-1"])',
+		'button:not([disabled]):not([tabindex="-1"])',
+		'[tabindex]:not([tabindex="-1"])',
+	].join(",")
 
 	// The OS preference is the fallback whenever there is no explicit user choice.
 	const getSystemTheme = () => (mediaQuery.matches ? DARK_THEME : LIGHT_THEME)
@@ -147,32 +222,73 @@ const isActive = (path: string) => {
 		moonIcon.classList.toggle("hidden", !isDark)
 	}
 
-		const getCurrentTheme = () => {
-			// If another script already set a valid theme on `<html>`, reuse it instead
-			// of recomputing from system preference.
-			const htmlTheme = document.documentElement.dataset.theme
-			if (htmlTheme === DARK_THEME || htmlTheme === LIGHT_THEME) {
-				return htmlTheme
-			}
-			return getSystemTheme()
+	const setMobileMenuState = (isOpen: boolean) => {
+		if (
+			!mobileMenuDisclosure ||
+			!mobileMenuToggle ||
+			!mobileMenuToggleText ||
+			!mobileMenuOpenIcon ||
+			!mobileMenuCloseIcon
+		) {
+			return
 		}
 
-		const handleSystemChange = () => {
-			try {
-				// Only follow OS theme changes when the site is configured to defer to
-				// the system. A user-selected theme should remain stable.
+		// Use the native disclosure state as the source of truth so the CSS-only
+		// fallback and the enhanced behavior stay aligned.
+		if ("open" in mobileMenuDisclosure) {
+			mobileMenuDisclosure.open = isOpen
+		}
+
+		// Reflect the same state into the trigger text and icon pair.
+		mobileMenuToggle.setAttribute("aria-expanded", String(isOpen))
+		mobileMenuToggle.setAttribute(
+			"aria-label",
+			isOpen ? "Close navigation menu" : "Open navigation menu"
+		)
+		mobileMenuToggleText.textContent = isOpen
+			? "Close navigation menu"
+			: "Open navigation menu"
+		mobileMenuOpenIcon.classList.toggle("hidden", isOpen)
+		mobileMenuCloseIcon.classList.toggle("hidden", !isOpen)
+	}
+
+	const isMobileMenuOpen = () =>
+		Boolean(
+			mobileMenuDisclosure &&
+			"open" in mobileMenuDisclosure &&
+			mobileMenuDisclosure.open
+		)
+
+	const closeMobileMenu = () => {
+		setMobileMenuState(false)
+	}
+
+	const getCurrentTheme = () => {
+		// If another script already set a valid theme on `<html>`, reuse it instead
+		// of recomputing from system preference.
+		const htmlTheme = document.documentElement.dataset.theme
+		if (htmlTheme === DARK_THEME || htmlTheme === LIGHT_THEME) {
+			return htmlTheme
+		}
+		return getSystemTheme()
+	}
+
+	const handleSystemChange = () => {
+		try {
+			// Only follow OS theme changes when the site is configured to defer to
+			// the system. A user-selected theme should remain stable.
 			const source = localStorage.getItem(SOURCE_KEY)
 			if (source !== SYSTEM_SOURCE) return
 
-				const nextTheme = getSystemTheme()
-				applyTheme(nextTheme)
-				setToggleState(nextTheme)
-				localStorage.setItem(THEME_KEY, nextTheme)
-			} catch {
-				applyTheme(getSystemTheme())
-				setToggleState(getSystemTheme())
-			}
+			const nextTheme = getSystemTheme()
+			applyTheme(nextTheme)
+			setToggleState(nextTheme)
+			localStorage.setItem(THEME_KEY, nextTheme)
+		} catch {
+			applyTheme(getSystemTheme())
+			setToggleState(getSystemTheme())
 		}
+	}
 
 	if (toggleButton) {
 		// Initialize the visible state from whatever theme is active when the
@@ -196,5 +312,141 @@ const isActive = (path: string) => {
 		})
 	}
 
+	if (mobileMenuDisclosure && mobileMenuToggle) {
+		setMobileMenuState(false)
+
+		mobileMenuDisclosure.addEventListener("toggle", () => {
+			// React to the browser-managed disclosure event rather than duplicating
+			// toggle logic on click, which keeps keyboard and pointer semantics native.
+			const isOpen = "open" in mobileMenuDisclosure && mobileMenuDisclosure.open
+			mobileMenuToggle.setAttribute("aria-expanded", String(isOpen))
+			mobileMenuToggle.setAttribute(
+				"aria-label",
+				isOpen ? "Close navigation menu" : "Open navigation menu"
+			)
+			mobileMenuToggleText.textContent = isOpen
+				? "Close navigation menu"
+				: "Open navigation menu"
+			mobileMenuOpenIcon.classList.toggle("hidden", isOpen)
+			mobileMenuCloseIcon.classList.toggle("hidden", !isOpen)
+
+			// When the panel opens, move focus to the first actionable item so keyboard
+			// users land inside the revealed content immediately.
+			if (!isOpen || !(mobileMenu instanceof HTMLElement)) {
+				return
+			}
+
+			const firstFocusableElement = mobileMenu.querySelector(
+				mobileMenuFocusableSelectors
+			)
+
+			if (firstFocusableElement instanceof HTMLElement) {
+				firstFocusableElement.focus()
+			}
+		})
+	}
+
+	mobileMenuLinks.forEach((link) => {
+		// Close the disclosure before navigation so the next page does not inherit
+		// an open mobile menu if the shell persists during client-side transitions.
+		link.addEventListener("click", closeMobileMenu)
+	})
+
+	document.addEventListener("click", (event) => {
+		if (
+			!isMobileMenuOpen() ||
+			!mobileMenu ||
+			!mobileMenuToggle ||
+			!(event.target instanceof Node)
+		) {
+			return
+		}
+
+		// Native `<details>` does not dismiss on outside click, so add that behavior
+		// as a progressive enhancement.
+		const clickedInsideMenu = mobileMenu.contains(event.target)
+		const clickedToggle = mobileMenuToggle.contains(event.target)
+
+		if (!clickedInsideMenu && !clickedToggle) {
+			closeMobileMenu()
+		}
+	})
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			// Return focus to the trigger after closing so keyboard users do not lose
+			// their place in the tab order.
+			closeMobileMenu()
+			if (mobileMenuToggle instanceof HTMLElement) {
+				mobileMenuToggle.focus()
+			}
+		}
+
+		if (
+			event.key !== "Tab" ||
+			!isMobileMenuOpen() ||
+			!(mobileMenu instanceof HTMLElement)
+		) {
+			return
+		}
+
+		// Keep Tab focus cycling inside the open mobile menu. This is a lightweight
+		// focus trap for a disclosure panel, not a full modal dialog implementation.
+		const focusableElements = [
+			...(mobileMenu.querySelectorAll(mobileMenuFocusableSelectors) ?? []),
+		].filter(
+			(element): element is HTMLElement => element instanceof HTMLElement
+		)
+
+		if (focusableElements.length === 0) {
+			event.preventDefault()
+			if (mobileMenuToggle instanceof HTMLElement) {
+				mobileMenuToggle.focus()
+			}
+			return
+		}
+
+		const firstElement = focusableElements[0]
+		const lastElement = focusableElements[focusableElements.length - 1]
+		const activeElement = document.activeElement
+
+		if (event.shiftKey && activeElement === firstElement) {
+			event.preventDefault()
+			lastElement.focus()
+			return
+		}
+
+		if (!event.shiftKey && activeElement === lastElement) {
+			event.preventDefault()
+			firstElement.focus()
+		}
+	})
+
+	desktopNavQuery.addEventListener("change", (event) => {
+		if (event.matches) {
+			// Reset the mobile-only disclosure when crossing into desktop layout so
+			// resizing back down does not reopen stale state.
+			closeMobileMenu()
+		}
+	})
+
 	mediaQuery.addEventListener("change", handleSystemChange)
 </script>
+
+<style>
+	#mobile-menu-toggle {
+		list-style: none;
+	}
+
+	#mobile-menu-toggle::-webkit-details-marker {
+		display: none;
+	}
+
+	.mobile-menu-panel {
+		display: none;
+	}
+
+	#mobile-menu-disclosure[open] .mobile-menu-panel {
+		display: block;
+	}
+</style>
