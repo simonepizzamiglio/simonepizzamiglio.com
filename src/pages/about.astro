@@ -55,34 +55,39 @@ import { Fragment } from "astro/dist/runtime/server"
 							skills: ["Javascript", "TypeScript", "HTML", "CSS"],
 						},
 						{
-							group: "technologies",
+							group: "Frontend",
 							skills: [
 								"React",
 								"Remix",
 								"Next.js",
 								"Redux",
 								"React Query",
-								"GraphQL",
-								"Zod",
 								"Tailwind CSS",
-								"Styled-components",
-								"MUI",
 								"Storybook",
-								"Cypress",
-								"Playwright",
-								"React-testing-library",
-								"Jest",
-								"Vitest",
-								"Node.js",
-								"Firebase",
-								"Electron",
 							],
 						},
 						{
-							group: "cloud-platforms",
-							skills: ["Google Cloud Platform"],
+							group: "backend",
+							skills: ["Node.js"],
 						},
-						{ group: "databases", skills: ["Firestore"] },
+						{
+							group: "Databases and ORM",
+							skills: ["PostgreSQL, Firestore, Drizzle ORM"],
+						},
+						{
+							group: "cloud-platforms",
+							skills: ["AWS"],
+						},
+						{
+							group: "Testing",
+							skills: [
+								"Cypress, Playwright, Jest, Vitest, React Testing Library",
+							],
+						},
+						{
+							group: "Tools",
+							skills: ["Github Actions, Vite, NX, Zod"],
+						},
 					].map(({ group, skills }) => (
 						<div>
 							<h3 class="mb-2 font-semibold capitalize">
