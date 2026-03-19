@@ -14,8 +14,13 @@ const blogPosts = (await getCollection("blog"))
 <BaseLayout title="Simone Pizzamiglio">
 	<div class="grid gap-16">
 		<section>
-			<h1 class="mb-8 text-5xl font-bold flex items-center">
-				Hey <span class="animate-wave inline-block px-2">👋 </span> I&apos;m Simone
+			<h1 class="mb-8 text-5xl font-bold leading-none">
+				<span class="inline-flex items-center">
+					Hey <span class="animate-wave inline-block px-2">👋</span>
+				</span>
+				<span class="mt-2 block md:mt-0 md:ml-2 md:inline">
+					I&apos;m Simone
+				</span>
 			</h1>
 			<p class="leading-relaxed max-w-3xl">
 				I’m a software engineer from Italy 🇮🇹 who enjoys building products and
